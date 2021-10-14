@@ -51,3 +51,14 @@ PORT_ENV = 8090
 NODE_ENV = undefined
 
 */
+
+
+/*
+
+$ spe PORT_ENV=666
+$ spe PORT_ENV=8888
+
+$ spe PORT_ENV=8000
+$ spe PORT_ENV=8090
+
+*/

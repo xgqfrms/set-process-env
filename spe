@@ -25,8 +25,9 @@ const {
   // env,
 } = process;
 
-
 const packageInfo = require("./package.json");
+// ??? check cross-env version
+// packageInfo.dependencies.env
 
 // v12.18.0
 console.log('\n🚀 your node.js version =', version.substr(1).split('.')[0]);
@@ -57,12 +58,22 @@ if (!args[0]) {
 
 let command = ``;
 
+// old version
 if (isPureNumber(env)) {
   // npm / yarn
-  command = `./node_modules/cross-env/src/bin/cross-env.js ${key}=${env} && yarn dev`;
+  command = `./node_modules/cross-env/dist/bin/cross-env.js ${key}=${env} && yarn dev`;
+  // command = `./node_modules/cross-env/dist/bin/cross-env.js ${key}=${env}`;
 } else {
-  command = `./node_modules/cross-env/src/bin/cross-env.js ${key}='${env}' && yarn dev`;
+  command = `./node_modules/cross-env/dist/bin/cross-env.js ${key}='${env}' && yarn dev`;
 }
+
+// new version
+// if (isPureNumber(env)) {
+//   // npm / yarn
+//   command = `./node_modules/cross-env/src/bin/cross-env.js ${key}=${env} && yarn dev`;
+// } else {
+//   command = `./node_modules/cross-env/src/bin/cross-env.js ${key}='${env}' && yarn dev`;
+// }
 
 // PORT_ENV=8090
 // shelljs 执行 command
