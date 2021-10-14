@@ -35,5 +35,8 @@
   },
   "bugs": {
     "url": "https://github.com/xgqfrms/set-process-env/issues"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3"
   }
 }
