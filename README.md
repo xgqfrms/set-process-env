@@ -25,6 +25,20 @@ $ spe PORT_ENV=8090
 > demo
 
 ```js
+// package.json
+
+{
+  // ...
+  "scripts": {
+    "dev": "cross-env NODE_OPTIONS='--max-old-space-size=8192' cross-env NODE_ENV=development webpack-dev-server --inline",
+    // ...
+  },
+  // ...
+}
+
+```
+
+```js
 // webpack.config.js
 const PORT = process.env.PORT_ENV || 8080;
 
