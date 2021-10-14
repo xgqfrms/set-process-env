@@ -43,6 +43,10 @@ $ spe PORT_ENV=8090
 const PORT = process.env.PORT_ENV || 8080;
 
 console.log('PORT_ENV =', process.env.PORT_ENV);
+// console.log('\n process.env.PORT_ENV =', process.env.PORT_ENV);
+// console.log('\n process.env.NODE_ENV =', process.env.NODE_ENV);
+// console.log('\n process.env.NODE_OPTIONS =', process.env.NODE_OPTIONS);
+// console.log('\n ✅ ');
 
 // const ip = require('ip');
 // const hostIp = ip.address();
