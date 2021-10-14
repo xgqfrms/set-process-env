@@ -60,25 +60,47 @@ if (!args[0]) {
   key = tempArr[0] || 'PORT_ENV';
   env = isPureNumber(tempArr[1]) ? parseInt(tempArr[1]) : tempArr[1];
 }
+// TODO: for 循环 读取多组 env
+
+// 拼接后，直接执行
+// PORT_ENV=666 PROXY_ENV='pre' && npm run dev
+// PORT_ENV=666 PROXY_ENV=pre && npm run dev
+
+// 单个 process 直接执行 ✅
+// PORT_ENV=666 node ./bug.js
+// process.env.PORT_ENV = 666
+
+// && 多个 process ❌
+// PORT_ENV=666 && node ./bug.js
+// process.env.PORT_ENV = undefined
 
 let command = ``;
 
-// old version
+// old version (dist)
 if (isPureNumber(env)) {
   // npm / yarn
+  // 单个 process 直接执行 ✅
+  command = `./node_modules/cross-env/dist/bin/cross-env.js ${key}=${env} npm run dev`;
+  // command = `./node_modules/cross-env/dist/bin/cross-env.js ${key}=${env} yarn dev`;
+  // && 多个 process ❌
   // command = `./node_modules/cross-env/dist/bin/cross-env.js ${key}=${env} && yarn dev`;
   // command = `./node_modules/cross-env/dist/bin/cross-env.js ${key}=${env} && npm run dev`;
   // command = `./node_modules/cross-env/dist/bin/cross-env.js ${key}=${env}`;
-  if(isMac) {
-    command = `export ${key}=${env}`;
-  } else {
-    command = `set ${key}=${env}`;
-  }
+  // if(isMac) {
+  //   command = `export ${key}=${env}`;
+  // } else {
+  //   command = `set ${key}=${env}`;
+  // }
 } else {
-  command = `./node_modules/cross-env/dist/bin/cross-env.js ${key}='${env}' && yarn dev`;
+  // 单个 process 直接执行 ✅
+  command = `./node_modules/cross-env/dist/bin/cross-env.js ${key}='${env}' npm run dev`;
+  // command = `./node_modules/cross-env/dist/bin/cross-env.js ${key}='${env}' yarn dev`;
+  // && 多个 process ❌
+  // command = `./node_modules/cross-env/dist/bin/cross-env.js ${key}='${env}' && npm run dev`;
+  // command = `./node_modules/cross-env/dist/bin/cross-env.js ${key}='${env}' && yarn dev`;
 }
 
-// new version
+// new version (src)
 // if (isPureNumber(env)) {
 //   // npm / yarn
 //   command = `./node_modules/cross-env/src/bin/cross-env.js ${key}=${env} && yarn dev`;
@@ -93,25 +115,13 @@ if (isPureNumber(env)) {
 // shell.echo("\n shell test");
 // shell.exec('pwd');
 
-// shell.exec(command);
+shell.exec(command);
 
-if(isMac) {
-  // command = `export ${key}=${env}`;
-  // shell.exec(command);
-  // shell.env[`"${key}"`] = env;
-} else {
-  // command = `set ${key}=${env}`;
-  // shell.exec(command);
-  // shell.env[`"${key}"`] = env;
-}
-
-// shell.env['"' + key + '"'] = env;
-// shell.env[`"${key}"`] = env;
-shell.env[key] = env;
+// shell.env[key] = env;
 // shell.env.PORT_ENV = 8090;
 
 console.log('\n🎉 finished!');
 
-// console.log('\n test command =', command);
+console.log('\n test command =', command);
 // console.log('\n shell.env =', shell.env);
 console.log('\n PORT_ENV =', process.env.PORT_ENV);

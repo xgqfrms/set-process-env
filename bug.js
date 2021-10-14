@@ -29,8 +29,13 @@ node ./bug.js
 
 /*
 
+// 单个 process 直接执行 ✅
+PORT_ENV=999 node ./bug.js
+// process.env.PORT_ENV = 999
 
+// && 多个 process ❌
 export PORT_ENV=999 && node ./bug.js
+//  process.env.PORT_ENV = undefined
 
 export PORT_ENV=999
 node ./bug.js
