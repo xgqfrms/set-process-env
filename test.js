@@ -24,6 +24,18 @@ NODE_ENV = undefined
 // set PORT_ENV=8090 && node ./test.js
 // $env:PORT_ENV=8090 && node ./test.js
 
+
+
+
+// export PORT_ENV=8090 && node -e "console.log('PORT_ENV =', process.env.PORT_ENV);"
+
+// windows ❌ && bug
+
+// set PORT_ENV=8090 && node -e "console.log('process.platform =', process.platform);"
+// set PORT_ENV=8090 && node -e "console.log('PORT_ENV =', process.env.PORT_ENV);"
+
+// $env:PORT_ENV=8090 && node ./test.js
+
 /*
 
 PORT_ENV = 8090
