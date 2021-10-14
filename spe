@@ -108,6 +108,7 @@ if(isMac) {
 // shell.env['"' + key + '"'] = env;
 // shell.env[`"${key}"`] = env;
 shell.env[key] = env;
+// shell.env.PORT_ENV = 8090;
 
 console.log('\n🎉 finished!');
 
