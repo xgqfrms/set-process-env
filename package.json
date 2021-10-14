@@ -5,12 +5,14 @@
   "author": "xgqfrms",
   "license": "MIT",
   "keywords": [
-    "node.js process.env",
+    "Node.js process.env",
     "set process env",
     "NODE_ENV",
     "PORT_ENV",
     "ENV",
-    "spe"
+    "spe",
+    "Linux",
+    "shell"
   ],
   "scripts": {
     "spe": "spe"

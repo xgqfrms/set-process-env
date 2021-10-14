@@ -6,9 +6,9 @@
  * @license MIT
  * @copyright xgqfrms 2021.10.14
  *
- * @description PORT_ENV Genarator
+ * @description PORT_ENV Generator
  * @augments
- * @example node env-generator.js env=dev
+ * @example spe PORT_ENV=8090
  *
  */
 
@@ -25,21 +25,13 @@ const {
   // env,
 } = process;
 
-// check windows or mac ???
-// console.log('process.arch =', process.arch);
-// console.log('process.platform =', process.platform === 'darwin' ? 'macOS' : 'Windows');
-// arch: 'x64',
-// platform: 'darwin',
-
 const packageInfo = require("./package.json");
 
 console.log(`\n spe version = ${packageInfo.version}`);
 // v12.18.0
 console.log('\n🚀 your node.js version =', version.substr(1).split('.')[0]);
-
 console.log('\n your platform =', platform === 'darwin' ? 'macOS' : 'Windows');
-
-const isMac = (platform === 'darwin');
+// const isMac = (platform === 'darwin');
 
 const args = argv.slice(2) || [];
 
@@ -60,68 +52,45 @@ if (!args[0]) {
   key = tempArr[0] || 'PORT_ENV';
   env = isPureNumber(tempArr[1]) ? parseInt(tempArr[1]) : tempArr[1];
 }
-// TODO: for 循环 读取多组 env
-
+// TODO: for 循环 args 读取多组 env
 // 拼接后，直接执行
-// PORT_ENV=666 PROXY_ENV='pre' && npm run dev
-// PORT_ENV=666 PROXY_ENV=pre && npm run dev
-
-// 单个 process 直接执行 ✅
-// PORT_ENV=666 node ./bug.js
-// process.env.PORT_ENV = 666
-
-// && 多个 process ❌
-// PORT_ENV=666 && node ./bug.js
-// process.env.PORT_ENV = undefined
+// PORT_ENV=666 PROXY_ENV='pre' npm run dev
+// PORT_ENV=666 PROXY_ENV=pre npm run dev
 
 let command = ``;
 
-// old version (dist)
+// old version cross-env (dist)
 if (isPureNumber(env)) {
   // npm / yarn
   // 单个 process 直接执行 ✅
   command = `./node_modules/cross-env/dist/bin/cross-env.js ${key}=${env} npm run dev`;
   // command = `./node_modules/cross-env/dist/bin/cross-env.js ${key}=${env} yarn dev`;
-  // && 多个 process ❌
-  // command = `./node_modules/cross-env/dist/bin/cross-env.js ${key}=${env} && yarn dev`;
-  // command = `./node_modules/cross-env/dist/bin/cross-env.js ${key}=${env} && npm run dev`;
-  // command = `./node_modules/cross-env/dist/bin/cross-env.js ${key}=${env}`;
-  // if(isMac) {
-  //   command = `export ${key}=${env}`;
-  // } else {
-  //   command = `set ${key}=${env}`;
-  // }
 } else {
   // 单个 process 直接执行 ✅
   command = `./node_modules/cross-env/dist/bin/cross-env.js ${key}='${env}' npm run dev`;
   // command = `./node_modules/cross-env/dist/bin/cross-env.js ${key}='${env}' yarn dev`;
-  // && 多个 process ❌
-  // command = `./node_modules/cross-env/dist/bin/cross-env.js ${key}='${env}' && npm run dev`;
-  // command = `./node_modules/cross-env/dist/bin/cross-env.js ${key}='${env}' && yarn dev`;
 }
 
-// new version (src)
-// if (isPureNumber(env)) {
-//   // npm / yarn
-//   command = `./node_modules/cross-env/src/bin/cross-env.js ${key}=${env} && yarn dev`;
-// } else {
-//   command = `./node_modules/cross-env/src/bin/cross-env.js ${key}='${env}' && yarn dev`;
-// }
+// new version cross-env (src)
+/*
+if (isPureNumber(env)) {
+  // npm / yarn
+  // 单个 process 直接执行 ✅
+  command = `./node_modules/cross-env/src/bin/cross-env.js ${key}=${env} npm run dev`;
+  // command = `./node_modules/cross-env/src/bin/cross-env.js ${key}=${env} yarn dev`;
+} else {
+  // 单个 process 直接执行 ✅
+  command = `./node_modules/cross-env/src/bin/cross-env.js ${key}='${env}' npm run dev`;
+  // command = `./node_modules/cross-env/src/bin/cross-env.js ${key}='${env}' yarn dev`;
+}
+*/
 
-// PORT_ENV=8090
 // shelljs 执行 command
-
-// shell.exec("\necho node.js version: && node -v");
-// shell.echo("\n shell test");
-// shell.exec('pwd');
-
 shell.exec(command);
 
-// shell.env[key] = env;
-// shell.env.PORT_ENV = 8090;
+console.log('\n test command =', command);
+console.log('\n PORT_ENV =', process.env.PORT_ENV);
+// console.log('\n shell.env.PORT_ENV =', shell.env.PORT_ENV);
 
 console.log('\n🎉 finished!');
 
-console.log('\n test command =', command);
-// console.log('\n shell.env =', shell.env);
-console.log('\n PORT_ENV =', process.env.PORT_ENV);
