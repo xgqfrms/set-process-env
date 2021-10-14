@@ -44,3 +44,17 @@ node ./bug.js
 // ./node_modules/shelljs/src/exec.js
 
 // node_modules/shelljs/shell.js
+
+
+/*
+
+https://github.com/xgqfrms/set-process-env/issues/3#issuecomment-943414882
+
+// 不同的 node.js child process env bug ???
+
+spe PORT_ENV=8090 && node ./bug.js
+
+spe PORT_ENV=8090 && node -e "console.log('PORT_ENV =', process.env.PORT_ENV);"
+
+
+*/

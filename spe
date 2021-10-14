@@ -93,9 +93,24 @@ if (isPureNumber(env)) {
 // shell.echo("\n shell test");
 // shell.exec('pwd');
 
-shell.exec(command);
+// shell.exec(command);
+
+if(isMac) {
+  // command = `export ${key}=${env}`;
+  // shell.exec(command);
+  // shell.env[`"${key}"`] = env;
+} else {
+  // command = `set ${key}=${env}`;
+  // shell.exec(command);
+  // shell.env[`"${key}"`] = env;
+}
+
+// shell.env['"' + key + '"'] = env;
+// shell.env[`"${key}"`] = env;
+shell.env[key] = env;
 
 console.log('\n🎉 finished!');
 
-console.log('\n test command =', command);
+// console.log('\n test command =', command);
+// console.log('\n shell.env =', shell.env);
 console.log('\n PORT_ENV =', process.env.PORT_ENV);
