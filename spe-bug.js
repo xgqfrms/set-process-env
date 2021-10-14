@@ -1,7 +1,7 @@
 const shell = require("shelljs");
 
-const key = 'PORT_ENV';
-const env = 8888;
+// const key = 'PORT_ENV';
+// const env = 8888;
 
 // const command = `export ${key}=${env}`;
 // const command = `set ${key}=${env}`;

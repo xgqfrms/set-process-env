@@ -53,8 +53,17 @@ console.log('process.platform =', process.platform === 'darwin' ? 'macOS' : 'Win
 // ❌
 // ./node_modules/cross-env/dist/bin/cross-env.js PORT_ENV=8090 && node ./test.js
 
+
 // ✅
 // ./node_modules/cross-env/src/bin/cross-env.js PORT_ENV=8090 && node ./test.js
+
+/*
+
+./node_modules/cross-env/src/bin/cross-env.js PORT_ENV=666 && node ./spe-bug.js
+
+./node_modules/cross-env/src/bin/cross-env.js PORT_ENV=666 && node ./spe-bug
+
+*/
 
 
 /*
