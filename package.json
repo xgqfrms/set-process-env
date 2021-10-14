@@ -1,6 +1,6 @@
 {
   "name": "set-process-env",
-  "version": "0.0.9",
+  "version": "0.0.11",
   "description": "set node.js process env for PORT_ENV",
   "author": "xgqfrms",
   "license": "MIT",

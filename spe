@@ -33,6 +33,7 @@ const {
 
 const packageInfo = require("./package.json");
 
+console.log(`\n spe version = ${packageInfo.version}`);
 // v12.18.0
 console.log('\n🚀 your node.js version =', version.substr(1).split('.')[0]);
 
@@ -52,7 +53,6 @@ let key = "";
 let env = "";
 if (!args[0]) {
   args[0] = "";
-  console.log(`ape version = ${packageInfo.version}`);
   key = 'PORT_ENV';
   env = 8080;
 } else {
@@ -90,12 +90,12 @@ if (isPureNumber(env)) {
 // shelljs 执行 command
 
 // shell.exec("\necho node.js version: && node -v");
-
+// shell.echo("\n shell test");
+// shell.exec('pwd');
 
 shell.exec(command);
 
-console.log('\n command =', command);
-console.log('\n PORT_ENV =', process.env.PORT_ENV);
-
-
 console.log('\n🎉 finished!');
+
+console.log('\n test command =', command);
+console.log('\n PORT_ENV =', process.env.PORT_ENV);
