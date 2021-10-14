@@ -1,6 +1,6 @@
 {
   "name": "set-process-env",
-  "version": "0.0.7",
+  "version": "0.0.9",
   "description": "set node.js process env for PORT_ENV",
   "author": "xgqfrms",
   "license": "MIT",
@@ -35,8 +35,8 @@
   "bugs": {
     "url": "https://github.com/xgqfrms/set-process-env/issues"
   },
-  "devDependencies": {
+  "devDependencies": {},
+  "dependencies": {
     "shelljs": "^0.8.4"
-  },
-  "dependencies": {}
+  }
 }

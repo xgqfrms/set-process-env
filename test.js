@@ -74,3 +74,9 @@ $ spe PORT_ENV=8000
 $ spe PORT_ENV=8090
 
 */
+
+// spe PORT_ENV=666 && node -e "console.log('PORT_ENV =', process.env.PORT_ENV);"
+
+// spe PORT_ENV=666 && node ./test.js
+
+// export PORT_ENV=8090 && node -e "console.log('PORT_ENV =', process.env.PORT_ENV);"

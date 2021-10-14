@@ -91,6 +91,11 @@ if (isPureNumber(env)) {
 
 // shell.exec("\necho node.js version: && node -v");
 
+
 shell.exec(command);
+
+console.log('\n command =', command);
+console.log('\n PORT_ENV =', process.env.PORT_ENV);
+
 
 console.log('\n🎉 finished!');
