@@ -30,4 +30,5 @@ shell.exec(command);
 
 
 console.log('\n command =', command);
-console.log('\n PORT_ENV =', process.env.PORT_ENV);
+// console.log('\n PORT_ENV =', PORT_ENV);
+console.log('\n process.env.PORT_ENV =', process.env.PORT_ENV);
