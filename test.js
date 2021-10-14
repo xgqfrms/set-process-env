@@ -17,8 +17,12 @@ NODE_ENV = undefined
 */
 
 
+// macOS / Linux 💻
 // export PORT_ENV=8090 && node ./test.js
 
+// Windows / PowerShell
+// set PORT_ENV=8090 && node ./test.js
+// $env:PORT_ENV=8090 && node ./test.js
 
 /*
 

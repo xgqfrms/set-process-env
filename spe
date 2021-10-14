@@ -12,7 +12,7 @@
  *
  */
 
-const packageInfo = require("./package.json");
+ const shell = require("shelljs");
 
 const fs = require("fs");
 
@@ -25,13 +25,16 @@ const {
   // env,
 } = process;
 
+
+const packageInfo = require("./package.json");
+
 // v12.18.0
 console.log('\n🚀 your node.js version =', version.substr(1).split('.')[0]);
 
-// const args = process.argv.slice(2) || [];
-const args = argv.slice(2) || [];
+console.log('\n your process.platform =', process.platform === 'darwin' ? 'macOS' : 'Windows');
+// cross-env
 
-const filename = "./env.js";
+const args = argv.slice(2) || [];
 
 const isPureNumber = (str = '') => {
   const numberDict = [...''.padEnd(10, 'x')].map((item, i) => `${i}`);
@@ -43,42 +46,29 @@ let key = "";
 let env = "";
 if (!args[0]) {
   args[0] = "";
-  console.log(`version = ${packageInfo.version}`);
-  key = 'APP_ENV';
-  env = 'dev';
+  console.log(`ape version = ${packageInfo.version}`);
+  key = 'PORT_ENV';
+  env = 8080;
 } else {
   const tempArr = args[0].split('=');
   key = tempArr[0] || 'PORT_ENV';
   env = isPureNumber(tempArr[1]) ? parseInt(tempArr[1]) : tempArr[1];
 }
 
-let defaultTemplate = ``;
-let envTemplate = ``;
-// ES5
+let command = ``;
+
 if (isPureNumber(env)) {
-  defaultTemplate = `// default\nconst ${key} = ${env};\nmodule.exports = ${key};\n`;
-  envTemplate = `// 🎉\nconst ${key} = ${env};\nmodule.exports = ${key};\n`;
+  // npm / yarn
+  command = `./node_modules/cross-env/src/bin/cross-env.js ${key}=${env} && yarn dev`;
 } else {
-  defaultTemplate = `// default\nconst ${key} = '${env}';\nmodule.exports = ${key};\n`;
-  envTemplate = `// 🎉\nconst ${key} = '${env}';\nmodule.exports = ${key};\n`;
+  command = `./node_modules/cross-env/src/bin/cross-env.js ${key}='${env}' && yarn dev`;
 }
 
-console.log('\n🎮 creating...');
+// PORT_ENV=8090
+// shelljs 执行 command
 
-fs.open(filename, "r", (err, fd) => {
-  if (err) {
-    fs.writeFile(filename, defaultTemplate, (err, fd) => {
-      if (err) {
-        console.log(`writeFile err =`, err);
-      }
-    });
-  } else {
-    fs.writeFile(filename, envTemplate, (err, fd) => {
-      if (err) {
-        console.log(`writeFile err =`, err);
-      }
-    });
-  }
-});
+// shell.exec("\necho node.js version: && node -v");
+
+shell.exec(command);
 
 console.log('\n🎉 finished!');
