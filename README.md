@@ -17,7 +17,7 @@ $ npm i -g set-process-env
 
 
 ```sh
-# PORT_ENV for webpack
+# PORT_ENV for webpack & npm script dev
 $ spe PORT_ENV=8090
 
 ```
@@ -53,6 +53,10 @@ const config = {
 module.exports = config;
 
 ```
+
+
+![image](https://user-images.githubusercontent.com/7291672/137368999-f2856a22-9730-4a8f-a94b-12d0875e422a.png)
+
 
 ## refs
 
