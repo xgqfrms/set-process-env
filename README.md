@@ -27,10 +27,13 @@ $ spe PORT_ENV=8090
 ```js
 // package.json
 
+// ⚠️ 前置条件 cross-env & npm dev script
+
 {
   // ...
   "scripts": {
-    "dev": "cross-env NODE_OPTIONS='--max-old-space-size=8192' cross-env NODE_ENV=development webpack-dev-server --inline",
+    "dev": "webpack-dev-server --inline",
+    // "dev": "cross-env NODE_OPTIONS='--max-old-space-size=8192' cross-env NODE_ENV=development webpack-dev-server --inline",
     // ...
   },
   // ...
