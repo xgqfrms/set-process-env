@@ -103,6 +103,6 @@ dist
 # TernJS port file
 .tern-port
 
-env.js
+# env.js
 
 # 000-xyz/
