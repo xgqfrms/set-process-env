@@ -80,6 +80,18 @@ module.exports = config;
 ![image](https://user-images.githubusercontent.com/7291672/137370844-316bfd5e-fe0f-4e89-ab68-c937ee355a9b.png)
 
 
+
+## multi env 
+
+```sh
+$ spe PORT_ENV=8090 PROXY_ENV=pre
+
+```
+
+![image](https://user-images.githubusercontent.com/7291672/137433698-23f62ecd-f59d-4f72-a3a6-14b1a27cfb12.png)
+
+![image](https://user-images.githubusercontent.com/7291672/137434750-e19f15bb-2b7b-4c19-9671-513b94b67563.png)
+
 ## refs
 
 https://www.npmjs.com/package/app-node-env
