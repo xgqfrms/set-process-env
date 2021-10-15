@@ -27,7 +27,8 @@ $ spe PORT_ENV=8090
 ```js
 // package.json
 
-// ⚠️ 前置条件 cross-env & npm dev script
+// ⚠️ precondition (cross-env@5.2.0, &  npm scripts has dev command)
+// ⚠️ 前置条件 (cross-env@5.2.0 & npm scripts has dev command)
 
 {
   // ...
