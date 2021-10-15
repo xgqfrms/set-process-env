@@ -84,3 +84,13 @@ module.exports = config;
 
 https://www.npmjs.com/package/app-node-env
 
+
+
+<!-- 
+
+
+$ spe PORT_ENV=8090
+
+$ spe PORT_ENV=8090 PROXY_ENV=pre
+
+ -->
