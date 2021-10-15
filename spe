@@ -12,9 +12,10 @@
  *
  */
 
- const shell = require("shelljs");
+const shell = require("shelljs");
+// const crossEnv = require("cross-env");
 
-const fs = require("fs");
+// const fs = require("fs");
 
 const {
   version,
@@ -41,21 +42,28 @@ const isPureNumber = (str = '') => {
   return arr.every(item => numberDict.includes(item));
 }
 
+// const map = new Map();
+const obj = {};
+
 let key = "";
 let env = "";
 if (!args[0]) {
-  args[0] = "";
+  // args[0] = "";
   key = 'PORT_ENV';
   env = 8080;
 } else {
   const tempArr = args[0].split('=');
   key = tempArr[0] || 'PORT_ENV';
   env = isPureNumber(tempArr[1]) ? parseInt(tempArr[1]) : tempArr[1];
+  // TODO: for 循环 args 读取多组 env
+  for (const arg of args[0]) {
+    console.log('arg =', );
+    // obj[key] = value;
+  }
+  // 拼接后，直接执行
+  // PORT_ENV=666 PROXY_ENV='pre' npm run dev
+  // PORT_ENV=666 PROXY_ENV=pre npm run dev
 }
-// TODO: for 循环 args 读取多组 env
-// 拼接后，直接执行
-// PORT_ENV=666 PROXY_ENV='pre' npm run dev
-// PORT_ENV=666 PROXY_ENV=pre npm run dev
 
 let command = ``;
 
@@ -63,10 +71,12 @@ let command = ``;
 if (isPureNumber(env)) {
   // npm / yarn
   // 单个 process 直接执行 ✅
+  // command = `crossEnv ${key}=${env} npm run dev`;
   command = `./node_modules/cross-env/dist/bin/cross-env.js ${key}=${env} npm run dev`;
   // command = `./node_modules/cross-env/dist/bin/cross-env.js ${key}=${env} yarn dev`;
 } else {
   // 单个 process 直接执行 ✅
+  // command = `crossEnv ${key}='${env}' npm run dev`;
   command = `./node_modules/cross-env/dist/bin/cross-env.js ${key}='${env}' npm run dev`;
   // command = `./node_modules/cross-env/dist/bin/cross-env.js ${key}='${env}' yarn dev`;
 }
