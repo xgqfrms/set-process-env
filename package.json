@@ -1,6 +1,6 @@
 {
   "name": "set-process-env",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "auto set custom node.js process env for webpack's PORT_ENV",
   "author": "xgqfrms",
   "license": "MIT",

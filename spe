@@ -28,16 +28,18 @@ const {
 
 const packageInfo = require("./package.json");
 
-console.log(`\n spe version = ${packageInfo.version}`);
+console.log(`\n🚀 your spe version = ${packageInfo.version}`);
 // v12.18.0
-console.log('\n🚀 your node.js version =', version.substr(1).split('.')[0]);
+console.log('\n your node.js version =', version.substr(1).split('.')[0]);
+
 console.log('\n your platform =', platform === 'darwin' ? 'macOS' : 'Windows');
+
 const isMac = (platform === 'darwin');
 
 const args = argv.slice(2) || [];
 
-
-console.log('\n your args =', args, argv);
+// console.log('\n your argv =', argv);
+console.log('\n your args =', args);
 
 const isPureNumber = (str = '') => {
   const numberDict = [...''.padEnd(10, 'x')].map((item, i) => `${i}`);
@@ -65,9 +67,9 @@ if (!args[0]) {
   } else {
     // for 循环 args 读取多组 env
     for (const [index, arg] of args.entries()) {
-      console.log('arg, index =', arg, index);
+      // console.log('arg, index =', arg, index);
       const [key, value] = arg.split('=');
-      console.log('key, value =', key, value);
+      // console.log('key, value =', key, value);
       // isNaN & parseInt() 10
       if(!Number.isNaN(parseInt(value))) {
         obj[key] = parseInt(value);
@@ -127,16 +129,20 @@ if (isPureNumber(env)) {
 */
 
 
-console.log('\n test commands =', commands);
-console.log('\n test obj =', obj, JSON.stringify(obj, null, 4));
+// console.log('\n test commands =', commands);
+// console.log('\n test obj =', obj, JSON.stringify(obj, null, 4));
 
 console.log('\n test command =', command);
 
 // shelljs 执行 command (Windows CMD / PowerShell bug ❌)
 shell.exec(command);
 
-console.log('\n PORT_ENV =', process.env.PORT_ENV);
+// console.log('\n PORT_ENV =', process.env.PORT_ENV);
 // console.log('\n shell.env.PORT_ENV =', shell.env.PORT_ENV);
 
-console.log('\n🎉 finished!');
+if(process.env.PORT_ENV) {
+  console.log('\n🎉 finished!');
+} else {
+  console.log('\❌ error occurred!');
+}
 
